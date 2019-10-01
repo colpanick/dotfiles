@@ -1,0 +1,4 @@
+#!/bin/bash
+
+[ -f ~/.config/distros/arch/bash_profile ] && . ~/.config/distros/arch/bash_profile
+[ -f ~/.config/distros/blackarch/bashrc ] && . ~/.config/distros/blackarch/bashrc

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+
+[ -f ~/.config/distros/arch/bashrc ] && . ~/.config/distros/arch/bashrc
