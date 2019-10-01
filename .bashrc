@@ -79,4 +79,12 @@ command -v vim >> /dev/null && alias vi="vim"
 
 alias sc="systemctl"
 
+# Alias for managing dot files
 alias config="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+
+# Distro specific overides
+DISTRO="$(cat /etc/os-release | grep ^ID | cut -c 4-)"
+[ -f ~/.config/distros/$DISTRO/bash_profile ] && . ~/.config/distros/$DISTRO/bash_profile
+
+# Local machine overrides (Not meant to be tracked with git)
+[ -f ~/.config/distros/bash_profile ] && . ~/.config/distros/bash_profile
