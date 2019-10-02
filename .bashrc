@@ -71,10 +71,10 @@ alias cd..5="cd ../../../../.."
 
 # Misc
 alias ports="netstat -tulanp"1
-wget="wget -c"
-top="htop"
-df="df -h"
-du="du -ch"
+alias wget="wget -c"
+command -v htop >> /dev/null && alias top="htop"
+alias df="df -h"
+alias du="du -ch"
 
 command -v vim >> /dev/null && alias vi="vim"
 
