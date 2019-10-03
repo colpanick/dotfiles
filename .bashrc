@@ -70,7 +70,7 @@ alias cd..4="cd ../../../.."
 alias cd..5="cd ../../../../.."
 
 # Misc
-alias ports="netstat -tulanp"1
+alias ports="ss -tulanp"
 alias wget="wget -c"
 command -v htop >> /dev/null && alias top="htop"
 alias df="df -h"
