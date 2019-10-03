@@ -55,8 +55,8 @@ alias fgrep="fgrep --color=auto"
 alias diff="diff --color=auto"
 
 # Directory listing Shortcuts
-alias ls='ls --color=auto --group-directories-first'
-command -v exa >> /dev/null && alias ls='exa --color=auto --group-directories-first'
+command -v exa >> /dev/null && export LS="exa -gH --git" || LS="ls"
+alias ls='$LS --color=auto --group-directories-first'
 alias cls="clear ; ls"
 alias ll="ls -lh"
 alias la="ls -a"
