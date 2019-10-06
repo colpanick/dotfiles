@@ -42,6 +42,10 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
+# Syntax highlighting in less
+ export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
+ export LESS=' -R '
+
 #   --== Custom Alias Declarations ==--
 
 alias mkdir="mkdir -p" 	# Make parent folders if necessary
@@ -70,7 +74,7 @@ alias cd..4="cd ../../../.."
 alias cd..5="cd ../../../../.."
 
 # Misc
-alias ports="ss -tulanp"
+alias ports="ss -tuanp"
 alias wget="wget -c"
 command -v htop >> /dev/null && alias top="htop"
 alias df="df -h"
