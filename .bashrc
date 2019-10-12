@@ -88,7 +88,7 @@ alias sc="systemctl"
 alias config="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
 # Distro specific overides
-DISTRO="$(cat /etc/os-release | grep ^ID | cut -c 4-)"
+DISTRO="$(cat /etc/os-release | grep ^ID= | cut -c 4-)"
 [ -f ~/.config/distros/$DISTRO/bash_profile ] && . ~/.config/distros/$DISTRO/bash_profile
 
 # Local machine overrides (Not meant to be tracked with git)
