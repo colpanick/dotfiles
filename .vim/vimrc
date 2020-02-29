@@ -1,0 +1,60 @@
+set encoding=utf-8   " Specify encoding
+set t_Co=256        " Add more colors (thank god)
+set number          " Add Numbers
+set ruler           " Show row and column at bottom
+set wildmenu        " Enable menu at the bottom
+set cursorline      " Highlight current line
+set colorcolumn=90  " Put a line at 90 chars
+set lazyredraw      " Redraw screen less
+set incsearch       " Search in real time
+set hlsearch
+set tabstop=4       " 4 spaces per tab
+set softtabstop=4
+set shiftwidth=4
+set autoindent      " Indenting
+set smartindent
+set expandtab       " Use spaces, not tabs
+set title
+set nocompatible
+set sidescroll=5
+set scrolloff=4
+set ignorecase
+
+" Split pane configurations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+set splitbelow
+set splitright
+
+
+" Toggle Relative and Non-Relative numbering
+" Relative in command mode
+" Non-Relative in insert mode
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
+syntax enable       " Enable syntax highlighting
+filetype indent on
+
+" Load plugins and plugin configs
+execute pathogen#infect()
+so ~/.vim/plugin-configs/*
+
+" Set color scheme.  If ssh, use black background
+colorscheme gruvbox
+set background=dark     " This fixes the weird lighting issues
+hi NonText ctermbg=NONE
+hi Normal ctermbg=NONE
+if $SSH_CONNECTION
+    hi NonText ctermbg=black
+    hi Normal ctermbg=black
+endif
+
+" Enter adds newling below current line
+nmap <CR> o<Esc>
+
