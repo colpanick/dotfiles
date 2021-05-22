@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Enable Caputure and set to 47
+amixer set Capture cap
+amixer set Capture 68%
+
+# Enable other mic settings
+amixer set Digital 54%
+amixer set "Rear Mic" 67%

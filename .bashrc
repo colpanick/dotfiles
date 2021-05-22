@@ -73,6 +73,12 @@ alias cd..3="cd ../../.."
 alias cd..4="cd ../../../.."
 alias cd..5="cd ../../../../.."
 
+# History Settings
+export HISTFILESIZE=1000000000                                                            
+export HISTSIZE=1000000000                                                                
+export HISTCONTROL=ignoreboth # Ingore duplicates and items that start with space 
+shopt -s histappend
+
 # Misc
 alias ports="ss -tuanp"
 alias wget="wget -c"
@@ -93,3 +99,4 @@ DISTRO="$(cat /etc/os-release | grep ^ID= | cut -c 4-)"
 
 # Local machine overrides (Not meant to be tracked with git)
 [ -f ~/.config/distros/bash_profile ] && . ~/.config/distros/bash_profile
+[[ -r /usr/share/z/z.sh ]] && source /usr/share/z/z.sh

@@ -275,8 +275,8 @@ globalkeys = gears.table.join(
     -- Keypad
     awful.key({modkey,            }, "KP_End", function () awful.spawn("vivaldi-stable") end,
               {description = "Vivaldi Browser", group = "applications"}),
-    awful.key({modkey,            }, "KP_Down", function () awful.spawn("discord", {tag="7-chat"}) end,
-              {description = "Discord", group = "applications"}),
+    awful.key({modkey,            }, "KP_Down", function () awful.spawn("firefox myapps.dollarbank.com", {tag="1"}) end,
+              {description = "Dollar Citrix", group = "applications"}),
     awful.key({modkey,            }, "KP_Page_Down", function () awful.spawn("spotify", {tag="8-media"}) end,
               {description = "Spotify", group = "applications"}),
     awful.key({modkey,            }, "KP_Left", function () awful.spawn("code-oss", {tag="6-dev"}) end,
