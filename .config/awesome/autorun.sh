@@ -7,7 +7,5 @@ function run {
     fi
 }
 
-run /usr/local/share/light_dm/startup.sh
-run /usr/bin/VBoxClient-all
 run /usr/bin/imwheel
 run ~/bin/enable_mic

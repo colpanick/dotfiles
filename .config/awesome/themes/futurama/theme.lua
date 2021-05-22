@@ -117,6 +117,10 @@ theme.layout_cornerne = themes_path.."futurama/layouts/cornerne.png"
 theme.layout_cornersw = themes_path.."futurama/layouts/cornersw.png"
 theme.layout_cornerse = themes_path.."futurama/layouts/cornerse.png"
 
+-- My custom icons
+theme.mic = themes_path.."futurama/custom_icons/mic.png"
+theme.mic_mute = themes_path.."futurama/custom_icons/mic_mute.png"
+
 -- Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(
     theme.menu_height, theme.bg_focus, theme.fg_focus

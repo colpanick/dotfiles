@@ -14,6 +14,9 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
+-- My custom libraries
+local myutils = require("my_utils")
+
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
@@ -108,6 +111,20 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock ("%a %b %e %l:%M%P")
+
+-- Create Mic widget
+mymiccontrol = wibox.widget.imagebox(beautiful.mic, true)
+function update_mic_icon(state)
+    if state == "on" then
+        mymiccontrol.image = beautiful.mic
+    else
+        mymiccontrol.image = beautiful.mic_mute
+    end
+end
+
+mymiccontrol:buttons(
+    awful.button({ }, 1, function () update_mic_icon(myutils.toggle_mic()) end)
+)
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -211,6 +228,7 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
+            mymiccontrol,
             mytextclock,
             s.mylayoutbox,
         },
@@ -346,6 +364,7 @@ globalkeys = gears.table.join(
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"})
+
 )
 
 clientkeys = gears.table.join(
@@ -585,3 +604,4 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
+gears.timer { call_now=true, autostart=true, callback = function () update_mic_icon(myutils.get_mic_state()) end }
