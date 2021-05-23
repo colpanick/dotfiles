@@ -335,6 +335,12 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
               {description = "select previous", group = "layout"}),
 
+    -- Screenshots
+    awful.key({                   }, "Print", function () awful.spawn("scrot -uz /home/jorge/ss/") end,
+              {description = "take screenshot of active client", group = "screenshot"}),
+    awful.key({ modkey,           }, "Print", function () awful.spawn("scrot -z /home/jorge/ss/") end,
+              {description = "take screenshot of both displays", group = "screenshot"}),
+
     awful.key({ modkey, "Control" }, "n",
               function ()
                   local c = awful.client.restore()
@@ -479,7 +485,7 @@ clientbuttons = gears.table.join(
 root.keys(globalkeys)
 -- }}}
 
--- {{{ Rules
+-- {{{ Rules - user xprop to get info
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
     -- All clients will match this rule.
@@ -491,8 +497,15 @@ awful.rules.rules = {
                      keys = clientkeys,
                      buttons = clientbuttons,
                      screen = awful.screen.preferred,
-                     placement = awful.placement.no_overlap+awful.placement.no_offscreen
+                     placement = awful.placement.no_overlap+awful.placement.no_offscreen,
+                     titlebars_enabled = true
      }
+    },
+    {
+        rule_any = {
+            class = {"URxvt","Eog"}
+        },
+        properties = { titlebars_enabled = false }
     },
 
     -- Floating clients.
@@ -571,6 +584,7 @@ client.connect_signal("request::titlebars", function(c)
     awful.titlebar(c) : setup {
         { -- Left
             awful.titlebar.widget.iconwidget(c),
+            awful.titlebar.widget.floatingbutton (c),
             buttons = buttons,
             layout  = wibox.layout.fixed.horizontal
         },
@@ -583,10 +597,10 @@ client.connect_signal("request::titlebars", function(c)
             layout  = wibox.layout.flex.horizontal
         },
         { -- Right
-            awful.titlebar.widget.floatingbutton (c),
             awful.titlebar.widget.maximizedbutton(c),
             awful.titlebar.widget.stickybutton   (c),
-            awful.titlebar.widget.ontopbutton    (c),
+            --awful.titlebar.widget.minimizedbutton(c),
+            --awful.titlebar.widget.ontopbutton    (c),
             awful.titlebar.widget.closebutton    (c),
             layout = wibox.layout.fixed.horizontal()
         },
@@ -604,4 +618,4 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
-gears.timer { call_now=true, autostart=true, callback = function () update_mic_icon(myutils.get_mic_state()) end }
+gears.timer { timeout=1, call_now=true, autostart=true, callback = function () update_mic_icon(myutils.get_mic_state()) end }
