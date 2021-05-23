@@ -112,6 +112,10 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock ("%a %b %e %l:%M%P")
 
+-- Create a calendar popup widget
+mycalendar = awful.widget.calendar_popup.month()
+mycalendar:attach(mytextclock, "br")
+
 -- Create Mic widget
 mymiccontrol = wibox.widget.imagebox(beautiful.mic, true)
 function update_mic_icon(state)
