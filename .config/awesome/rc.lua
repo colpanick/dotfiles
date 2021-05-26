@@ -16,6 +16,9 @@ local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- My custom libraries
 local myutils = require("my_utils")
+-- Configuration moved to separate files
+local mytags = require("conf.tags")
+local mylayouts = require("conf.layouts")
 
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
@@ -63,24 +66,7 @@ editor_cmd = terminal .. " -e " .. editor
 modkey = "Mod1"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
-awful.layout.layouts = {
-    awful.layout.suit.corner.nw,
-    awful.layout.suit.floating,
-    awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier,
-    -- awful.layout.suit.corner.ne,
-    -- awful.layout.suit.corner.sw,
-    -- awful.layout.suit.corner.se,
-}
+awful.layout.layouts = mylayouts.layouts
 -- }}}
 
 -- {{{ Menu
@@ -190,7 +176,12 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6-dev", "7-chat", "8-media", "9-misc" }, s, awful.layout.layouts[1])
+    --awful.tag({ "1", "2", "3", "4", "5", "6-dev", "7-chat", "8-media", "9-misc" }, s, awful.layout.layouts[1])
+    sindex = s.index
+    --awful.tag(mytags.my_tags[sindex].names, s, mytags.my_tags[sindex].layouts)
+    --lo = mylayouts.layouts
+    --tl = { lo[3], lo[1], lo[1], lo[1], lo[1], lo[1], lo[1], lo[1], lo[1] }
+    awful.tag(mytags.my_tags[sindex].names, s,mytags.my_tags[sindex].layouts) 
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -505,11 +496,40 @@ awful.rules.rules = {
                      titlebars_enabled = true
      }
     },
+    -- No titlebars
     {
         rule_any = {
-            class = {"URxvt","Eog"}
+            class = {
+                "URxvt",
+                "Eog" -- Eye of Gnome image viewer (Already has buttons)
+            }
         },
         properties = { titlebars_enabled = false }
+    },
+    {
+        rule = {class="Enpass"},
+        properties = {
+            tag = screen[2].tags[9]
+        }
+
+    },
+    {
+        rule = {class="Joplin"},
+        properties = {
+            tag = screen[2].tags[2]
+        }
+    },
+    {
+        rule = {name="Spotify Premium"},
+        properties = {
+            tag = screen[2].tags[8]
+        }
+    },
+    {
+        rule = {class="discord"},
+        properties = {
+            tag = screen[2].tags[7]
+        }
     },
 
     -- Floating clients.
