@@ -7,3 +7,6 @@ amixer set Capture 68%
 # Enable other mic settings
 amixer set Digital 54%
 amixer set "Rear Mic" 67%
+
+amixer set "Input Source",0 "Rear Mic"
+amixer set "Rear Mic" unmute
