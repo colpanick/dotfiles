@@ -2,6 +2,9 @@
 # /etc/bash.bashrc
 #
 
+# Add additional funcionality
+. ~/.config/bashrc_utils
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -22,8 +25,8 @@ shopt -s cdspell		# Correct typos for cd
 
 # Set prompt.  Green if user, Red if root
 if [ "$EUID" -ne 0 ]
-	then export PS1='\[\033[0;33m\]{\[\033[0;32m\]\!\[\033[0;33m\]}-{\[\033[0;32m\]\t\[\033[0;33m\]}-{\[\033[0;32m\]\w\[\033[0;33m\]}\[\033[0;32m\]\n\[\033[0;33m\]{\[\033[1;32m\]\u\[\033[0;32m\]@\h\[\033[0;33m\]}\[\033[0;37m\]\$ '
-	else export PS1='\[\033[0;33m\]{\[\033[0;31m\]\!\[\033[0;33m\]}-{\[\033[0;31m\]\t\[\033[0;33m\]}-{\[\033[0;31m\]\w\[\033[0;33m\]}\[\033[0;31m\]\n\[\033[0;33m\]{\[\033[1;31m\]\u\[\033[0;31m\]@\h\[\033[0;33m\]}\[\033[0;37m\]\$ '
+	then prompt_template jorge
+	else prompt_template root
 fi
 
 # If available, activate advanced bash completion
