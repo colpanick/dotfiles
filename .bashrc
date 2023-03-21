@@ -71,10 +71,10 @@ alias lla="ls -la"
 
 # Navigation Shortcuts
 alias cd..="cd .."
-alias cd..2="cd ../.."
-alias cd..3="cd ../../.."
-alias cd..4="cd ../../../.."
-alias cd..5="cd ../../../../.."
+alias cd...="cd ../.."
+alias cd....="cd ../../.."
+alias cd.....="cd ../../../.."
+alias cd......="cd ../../../../.."
 
 # History Settings
 export HISTFILESIZE=1000000000                                                            

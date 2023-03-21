@@ -1,3 +1,7 @@
-".*"
+".*[v,V]ivaldi.*"
+None, Up, Button4, 2
+None, Down, Button5, 2
+
+"Mozilla Firefox"
 None, Up, Button4, 2
 None, Down, Button5, 2
