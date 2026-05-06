@@ -13,14 +13,14 @@ function set_prompt () {
 
 function prompt_template () {
     case $1 in
-        jorge)
+        default)
             colors=("0;33" "0;32" "1;32")
         ;;
         root)
             colors=("0;33" "0;31" "1;31")
         ;;
         blue)
-            colors=("1;34" "0;34" "0;36")
+            colors=("1;34" "0;34" "1;34")
         ;;
         purple)
             colors=("1;35" "0;35" "1;30")
@@ -31,7 +31,29 @@ function prompt_template () {
         fire)
             colors=("0;33" "0;31" "1;33")
         ;;
+        pittsburgh)
+            colors=("0;30" "0;33" "1;97")
+        ;;
+        clover)
+            colors=("0;92" "0;96" "0;93")
+        ;;
+        devil)
+            colors=("0;31" "0;90" "1;91")
+        ;;
+        marine)
+            colors=("0;94" "0;96" "1;94")
+        ;;
+        ocean)
+            colors=("0;96" "0;94" "1;96")
+        ;;
+        heavenly)
+            colors=("1;33" "1;37" "1;34")
+        ;;
+        regal)
+            colors=("1;37" "1;33" "1;34")
+        ;;
     esac
     set_prompt ${colors[0]} ${colors[1]} ${colors[2]}
 }
 
+prompt_template $1

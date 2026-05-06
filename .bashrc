@@ -25,7 +25,7 @@ shopt -s cdspell		# Correct typos for cd
 
 # Set prompt.  Green if user, Red if root
 if [ "$EUID" -ne 0 ]
-	then prompt_template jorge
+	then prompt_template default
 	else prompt_template root
 fi
 
@@ -37,6 +37,10 @@ complete -A directory cd # Only show directories for cd completion
 set -o vi
 
 # Colorize Man Output
+export LESS='-R'
+export MANPAGER='less -R'
+export GROFF_NO_SGR=0
+
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_md=$'\E[01;31m'
 export LESS_TERMCAP_me=$'\E[0m'
